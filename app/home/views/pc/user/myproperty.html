@@ -1,0 +1,69 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="container">
+            <div class="row">
+              <?php $this->load->view($this->templates.'/user/menu.html');?>
+              <div class="c8 fl">
+                <div class="info-panel">
+                  <ul class="sub-nav">
+                    <li><a href="/user/myproperty" class="f-orange">我的资产</a></li>
+                  </ul>
+                  
+                  <table width="100%" class="custle mt10">
+                    <tr>
+                      <td>
+                        <img src="/public/home/pc/images/arrow_5.png" alt="" /> 账户余额: <span class="f-orange">200</span>
+                      </td>
+                      <td>
+                        <img src="/public/home/pc/images/arrow_5.png" alt="" />
+                        累计收益: <span class="f-orange"><?php echo $total_interest;?></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="p0">
+                        <p class="s-line"></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <img src="/public/home/pc/images/arrow_4.png" alt="" />
+                        待收本金: <span class="f-orange"><?php echo $total_principal;?></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src="/public/home/pc/images/arrow_2.png" alt="" />
+                        待收利息: <span class="f-orange"><?php echo $interest;?></span>
+                      </td>
+                      <td>
+                        <a href="/lend" class="f-orange">去出借</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src="/public/home/pc/images/arrow_1.png" alt="" />
+                        待收奖励: <span class="f-orange">0</span>
+                      </td>
+                      <td>
+                        <a href="/lend" class="f-orange">去出借</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="p0">
+                        <p class="s-line"></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="c4 fl">红包 <span class="f-orange">0</span>(个) </div>
+                        <div class="c4 fl">现金券 <span class="f-orange">0</span>(张)</div>
+                        <div class="c4 fl">加息券 <span class="f-orange">0</span>(张)</div>
+                      </td>
+                    </tr>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>

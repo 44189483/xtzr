@@ -1,0 +1,113 @@
+    <div class="centercontent tables">
+    
+        <div id="contentwrapper" class="contentwrapper">
+                
+            <div class="contenttitle2">
+            	<h3>借款人</h3>
+            </div><!--contenttitle-->
+
+            <div class="tableoptions">
+                <form method="GET" action="">
+                    <?php if(empty($pid)):?>
+                    <label>
+                        <select data-placeholder="-请选择项目-" class="chzn-select" tabindex="2" name="pid">
+                        <option value=""></option> 
+                        <?php 
+                            foreach ($projects as $key => $val) :
+                                if($val->projectId == $projectId || $val->projectId == $pid):
+                                    $selected = 'selected="selected"';
+                                else:
+                                    $selected = '';
+                                endif;
+                                echo '<option value="'.$val->projectId.'" '.$selected.'>'.$val->projectName.'</option>';
+                            endforeach;
+                        ?>
+                        </select>
+                    </label> 
+                    &nbsp;
+                    <button type="submit">查询</button>
+                    <?php else:?>
+                        当前项目: <?php echo $pname;?>
+                    <?php endif;?>
+                    <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                    <button type="button" class="floatright" onclick="window.location.href='/admin.php/user/add/<?php echo $pid;?>'">添加借款人</button>
+                </form>
+            </div>
+
+            <!--tableoptions-->	
+
+            <div class="dataTables_wrapper" id="dyntable_wrapper">
+
+                <form name="form" id="form" method="POST" action="/admin.php/user/del">
+                    <table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb" id="tab">
+                        <thead>
+                            <tr>
+                                <th class="head0">
+                                    <input type="checkbox" class="checkall"/>
+                                </th>
+                                <th class="head3">项目名称</th>
+                                <th class="head0">姓名</th>
+                                <th class="head3">身份证</th>
+                                <th class="head3">抵押品</th>
+                                <th class="head3">抵押金额</th>
+                                <th class="head3">借出金额</th>
+                                <th class="head3">时间</th>
+                                <th class="head0">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if($rows):?>
+                            <?php foreach ($rows as $k => $val):?>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="id[]" value="<?php echo $val->userId;?>" />
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->projectName;?>
+                                </td>
+                                <td>
+                                    <?php echo $val->realName; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->identificationNumber;?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->mortgageThing;?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->mortgageAmount; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->lendAmount; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->createTime; ?>
+                                </td>
+                                <td class="center">
+                                    <a href="<?php echo site_url('user/edit/'.$val->userId); ?>">编辑</a> / <a data-href="<?php echo site_url('user/del/'.$val->userId); ?>" class="delete">删除</a>
+                                </td>
+                            </tr>
+                            <?php endforeach;?>
+                        <?php else:?>
+                            <tr><td colspan="9" align="center">暂无信息...</td></tr>
+                        <?php endif;?>
+                        </tbody>
+                    </table>
+                    <div class="dataTables_paginate paging_full_titles" id="dyntable_paginate">
+                        <div class="dataTables_info" id="dyntable_info">累计项目借款人:<?php echo $total;?>个</div>
+                        <button type="button" class="deletebutton">删除选中</button>
+                        <?php echo $page;?>
+                    </div>
+                </form>
+
+            </div>
+        
+        </div><!--contentwrapper-->
+        
+	</div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="row column">
+            <div id="tabs_menu1">
+                <?php foreach ($classes as $key => $val):?>
+                <h4 <?php if($val->articleId==$id):?>class="active"<?php endif;?>><a href="/company/<?php echo $val->articleId;?>"><?php echo $val->articleTitle;?></a></h4>
+                <?php endforeach;?>
+            </div>
+            <div class="clearfix"></div>
+            <div id="tabs_main1" class="info">
+                <?php echo $info->articleContent;?>
+            </div>
+          </div>
+      </div>

@@ -1,0 +1,93 @@
+      <!--
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="info-panel">
+              <div class="login">
+                <div class="f20">修改密码</div>
+                <br/>
+                <div class="s-line"></div>
+                <form id="checkform" name="checkform" method="POST" action="/member/checksetpwd">
+                  <table class="center">
+                    <tr>
+                      <td>新密码:</td>
+                      <td>
+                        <input type="password" name="pwd" id="pwd" required="" />
+                        <p class="red error pwd"></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>确认密码:</td>
+                      <td>
+                        <input type="password" name="repwd" id="repwd" required="" />
+                        <p class="red error repwd"></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>图片验证码:</td>
+                      <td>
+                        <input type="text" name="verifcode" id="verifcode" required="" />
+                        <span>
+                          <img src="/member/imgverifycode" name="imgCaptcha" id="imgCaptcha" class="code"/>
+                        </span> 
+                        <span class="ml15"><a href="javascript:void(0);" onclick="document.getElementById('imgCaptcha').src='/member/imgverifycode';" class="brown">看不清?再换一张</a></span>
+                        <p class="red error verifcode"></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td class="text-center">
+                        <input type="hidden" id="formtype" value="setpwd"/>
+                        <button type="submit" name="submit" id="submit" class="btn-brown ml15">修改密码</button>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      -->
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="row info-panel">
+              <div class="tc pr">
+                <span class="f25">修改密码</span>
+              </div>
+              <p class="s-line"></p>
+              <form id="form1" name="form1" class="frm" method="POST" action="/member/checksetpwd">
+                <table class="center" width="700">
+                  <tr>
+                      <td>新密码:</td>
+                      <td>
+                        <input type="password" name="pwd" id="pwd"/>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>确认密码:</td>
+                      <td>
+                        <input type="password" name="repwd" id="repwd"/>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>图片验证码:</td>
+                      <td>
+                        <input type="text" name="verifcode" id="verifcode"/>
+                        <span>
+                          <img src="/member/imgverifycode" name="imgCaptcha" id="imgCaptcha" class="code"/>
+                        </span> 
+                        <a href="javascript:void(0);" onclick="document.getElementById('imgCaptcha').src='/member/imgverifycode';" class="f-red">看不清?再换一张</a>
+                      </td>
+                    </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                      <input type="hidden" name="formtype" id="formtype" value="setpwd"/>
+                      <button type="submit" name="submit" id="submit" class="btn btn-o ml25">提交</button>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+          </div>
+      </div>

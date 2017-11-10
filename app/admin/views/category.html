@@ -1,0 +1,76 @@
+    <div class="centercontent tables">
+    
+        <div id="contentwrapper" class="contentwrapper">
+                
+            <div class="contenttitle2">
+            	<h3><?php echo $title;?>分类</h3>
+            </div><!--contenttitle-->
+            
+            <div class="tableoptions">
+                <form id="form1" name="form1" class="vtdform" method="POST" action="/admin.php/category/save">
+                    <label><input type="text" name="cname" id="cname" placeholder="分类名称" /></label>
+                    &nbsp;
+                    <input type="hidden" name="type" id="type" value="<?php echo $type;?>" />
+                    <button type="submit">添加</button>
+                </form>
+            </div>
+
+            <div class="dataTables_wrapper" id="dyntable_wrapper">
+
+                <form name="form" id="form" method="POST" action="/admin.php/category/del/1">
+                    <table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb tableoptions" id="tab">
+                        <thead>
+                            <tr>
+                                <th class="head0">
+                                    <input type="checkbox" class="checkall"/>
+                                </th>
+                                <th class="head3">类别</th>
+                                <th class="head0">名称</th>
+                                <th class="head0">排序(数值越大越靠前)</th>
+                                <th class="head0">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if($rows):?>
+                            <?php foreach ($rows as $k => $val):?>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="id[]" value="<?php echo $val->classId;?>" />
+                                </td>
+                                <td class="head3">
+                                    <?php echo $title.'分类';?>
+                                </td>
+                                <td>
+                                    <input type="text" value="<?php echo $val->className;?>" name="name" id="input_1_<?php echo $val->classId;?>" onchange="saveData('class','className',this.value,'classId',this.id);" class="smallinput"/>
+                                </td>
+                                <td>
+                                    <input type="text" value="<?php echo $val->ord;?>" name="ord" id="input_2_<?php echo $val->classId;?>" onchange="saveData('class','ord',this.value,'classId',this.id);" class="smallinput" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" style="width:20px;" />
+                                </td>
+                                <td class="center">
+                                    <a data-href="<?php echo site_url('category/del/1/'.$val->classId); ?>" class="delete">删除</a></td>
+                            </tr>
+                            <?php endforeach;?>
+                        <?php else:?>
+                            <tr><td colspan="4" align="center">暂无信息...</td></tr>
+                        <?php endif;?>
+                        </tbody>
+                    </table>
+
+                    <div class="dataTables_paginate paging_full_titles" id="dyntable_paginate">
+                        <div class="dataTables_info" id="dyntable_info">注意:删除分类其下的内容将一同删除</div>
+                        <button type="button" class="deletebutton">删除选中</button>
+                        <?php echo $page;?>
+                    </div>
+                </form>
+
+            </div>
+        
+        </div><!--contentwrapper-->
+        
+	</div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+
+</body>
+</html>

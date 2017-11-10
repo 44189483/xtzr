@@ -1,0 +1,87 @@
+      <div class="search">
+        <div class="container">
+          <div class="row">
+            <div class="tags">
+              <strong>项目状态</strong>
+              <ul>
+                <li><a href="javascript:getlend('0-<?php echo $getparam[1];?>-<?php echo $getparam[2];?>-<?php echo $getparam[3];?>')" class="f-red">全部</a></li>
+                <?php foreach ($status as $key => $val):?>
+                <li><a href="javascript:getlend('<?php echo $val->classId;?>-<?php echo $getparam[1];?>-<?php echo $getparam[2];?>-<?php echo $getparam[3];?>')" <?php if($val->classId == $getparam[0]):?>class="f-red"<?php endif;?>><?php echo $val->className;?></a></li>
+                <?php endforeach;?>
+              </ul>
+            </div>
+            <div class="tags">
+              <strong>年化收益率</strong>
+              <ul>
+                <li><a href="javascript:getlend('<?php echo $getparam[0];?>-0-<?php echo $getparam[2];?>-<?php echo $getparam[3];?>')" class="f-red">全部</a></li>
+                <?php foreach ($yearRate as $key => $val):?>
+                <li><a href="javascript:getlend('<?php echo $getparam[0];?>-<?php echo $val->classId;?>-<?php echo $getparam[2];?>-<?php echo $getparam[3];?>')" <?php if($val->classId == $getparam[1]):?>class="f-red"<?php endif;?>><?php echo $val->className;?>%</a></li>
+                <?php endforeach;?>
+              </ul>
+            </div>
+            <div class="tags">
+              <strong>出借期限</strong>
+              <ul>
+                <li><a href="javascript:getlend('<?php echo $getparam[0];?>-<?php echo $getparam[1];?>-0-<?php echo $getparam[3];?>')" class="f-red">全部</a></li>
+                <?php foreach ($timeLimit as $key => $val):?>
+                <li><a href="javascript:getlend('<?php echo $getparam[0];?>-<?php echo $getparam[1];?>-<?php echo $val->classId;?>-<?php echo $getparam[3];?>')" <?php if($val->classId == $getparam[2]):?>class="f-red"<?php endif;?>><?php echo $val->className;?></a></li>
+                <?php endforeach;?>
+              </ul>
+            </div>
+            <div class="tags">
+              <strong>还款方式</strong>
+              <ul>
+                <li><a href="javascript:getlend('<?php echo $getparam[0];?>-<?php echo $getparam[1];?>-<?php echo $getparam[2];?>-0')" class="f-red">全部</a></li>
+                <?php foreach ($repayment as $key => $val):?>
+                <li><a href="javascript:getlend('<?php echo $getparam[0];?>-<?php echo $getparam[1];?>-<?php echo $getparam[2];?>-<?php echo $val->classId;?>')" <?php if($val->classId == $getparam[3]):?>class="f-red"<?php endif;?>><?php echo $val->className;?></a></li>
+                <?php endforeach;?>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+          <div class="row">
+            <?php foreach ($rows as $key => $val):?>  
+            <div class="list">
+                <h3>
+                  <a href="/lend/detail/<?php echo $val->projectId;?>" class="brown">[ <?php echo $val->projectName;?> ]</a>
+                </h3>
+                <ul>
+                    <li>
+                      <p>年化收益率</p>
+                      <p class="mt20">
+                        <strong>
+                          <span class="f40 f-orange"><?php echo $val->yearRate;?></span>
+                        </strong>
+                        <span class="f-orange">%</span>
+                      </p>
+                    </li>
+                    <li>
+                      <p class="f14">可投100~10,000元 | <?php echo $val->repayment;?></p>
+                      <p class="mt20">期限: <?php echo repStr("{$val->timeLimit}");?></p>
+                    </li>
+                    <li>
+                      <div class="progress mt10">
+                        <span class="orange" style="width: <?php echo $val->lendProgress;?>%;"></span>
+                      </div>
+                      <p class="mt40">剩余可投：45,000.00元</p>
+                    </li>
+                    <li>
+                      <a href="/lend/detail/<?php echo $val->projectId;?>" class="btn <?php if($val->className == '出借中'):?>btn-o"<?php else: ?>btn-g<?php endif;?>"><?php echo $val->className;?></a>
+                    </li>
+                </ul>           
+            </div>
+            <?php endforeach;?>
+            <?php echo $page;?>
+          </div>
+      </div>
+      <script type="text/javascript">
+        $(function(){
+          //用JQ替换分页链接实现无刷新省得改后端PHP
+          $(".page li a").each(function(i){
+              var num = $(this).attr("data-ci-pagination-page");
+              $(this).attr("href","javascript:getlend('<?php echo $cat;?>',"+num+")");
+          });
+        });
+      </script>

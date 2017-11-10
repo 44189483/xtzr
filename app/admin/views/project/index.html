@@ -1,0 +1,144 @@
+    <div class="centercontent tables">
+    
+        <div id="contentwrapper" class="contentwrapper">
+                
+            <div class="contenttitle2">
+            	<h3>项目管理</h3>
+            </div><!--contenttitle-->
+
+            <div class="tableoptions">
+                <form method="GET" action="">
+                    <label>
+                        <select data-placeholder="-请选择项目-" class="chzn-select" tabindex="2" name="pid">
+                        <option value=""></option> 
+                        <?php 
+                            foreach ($projects as $key => $val) :
+                                if($val->projectId == $pid):
+                                    $selected = 'selected="selected"';
+                                else:
+                                    $selected = '';
+                                endif;
+                                echo '<option value="'.$val->projectId.'" '.$selected.'>'.$val->projectName.'</option>';
+                            endforeach;
+                        ?>
+                        </select>
+                    </label>  
+                    &nbsp;
+                    <button type="submit">查询</button>
+                    <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                    <button type="button" class="floatright" onclick="window.location.href='/admin.php/project/add'">添加项目</button>
+                </form>
+            </div>
+
+            <!--tableoptions-->	
+
+            <div class="dataTables_wrapper" id="dyntable_wrapper">
+
+                <form name="form" id="form" method="POST" action="/admin.php/project/del">
+                    <table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb" id="tab">
+                        <thead>
+                            <tr>
+                                <th class="head0">
+                                    <input type="checkbox" class="checkall"/>
+                                </th>
+                                <th class="head3">序号</th>
+                                <th class="head0">名称</th>
+                                <th class="head3">类型</th>
+                                <th class="head3">出借上限</th>
+                                <th class="head3">借款金额</th>
+                                <th class="head3">最低出借金额</th>
+                                <th class="head3">年化收益率</th>
+                                <th class="head3">借款期限</th>
+                                <th class="head3">还款方式</th>
+                                <th class="head3">起息日</th>
+                                <th class="head3">状态</th>
+                                <th class="head3">排序</th>
+                                <th class="head3">时间</th>
+                                <th class="head0">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if($rows):?>
+                            <?php foreach ($rows as $k => $val):?>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="id[]" value="<?php echo $val->projectId;?>" />
+                                </td>
+                                <td class="head3">
+                                    <?php 
+                                        if(empty($current_page)):
+                                            echo $k+1;
+                                        else:
+                                            echo $per_page*($current_page-1)+$k+1;
+                                        endif;
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php if($val->projectType==0): ?>
+                                        出借服务
+                                    <?php elseif($val->projectType==1): ?>
+                                        新手专享
+                                    <?php endif;?>
+                                </td>
+                                <td title="<?php echo $val->projectName; ?>">
+                                    <?php echo utfSubstr($val->projectName,0,20); ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->upperLendLimit; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->loanAmount; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->minLoanAmount; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->yearRate; ?> %
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->timeLimit; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->repayment; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->interestDate; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->className;?>
+                                </td>
+                                <td class="head3">
+                                    <input type="text" value="<?php echo $val->projectOrd;?>" name="projectOrd" id="input_2_<?php echo $val->projectId;?>" onchange="saveData('project','projectOrd',this.value,'projectId',this.id);" class="smallinput" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" style="width:20px;" />
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->createTime; ?>
+                                </td>
+                                <td class="center">
+                                    <a href="<?php echo site_url('project/edit/'.$val->projectId); ?>">编辑</a> <!--/ <a data-href="<?php echo site_url('project/del/'.$val->projectId); ?>" class="delete">删除</a> --> / <a href="<?php echo site_url('user/index/'.$val->projectId); ?>">借款人</a> / <a href="<?php echo site_url('raisefund/index/'.$val->projectId); ?>">融资人</a></td>
+                            </tr>
+                            <?php endforeach;?>
+                        <?php else:?>
+                            <tr><td colspan="14" align="center">暂无信息...</td></tr>
+                        <?php endif;?>
+                        </tbody>
+                    </table>
+
+                    <div class="dataTables_paginate paging_full_titles" id="dyntable_paginate">
+                        <!--<div class="dataTables_info" id="dyntable_info">注意:删除项目集资会员及借款人等一并删除</div>
+                        <button type="button" class="deletebutton">删除选中</button>-->
+                        <?php echo $page;?>
+                    </div>
+
+                </form>
+
+            </div>
+        
+        </div><!--contentwrapper-->
+        
+	</div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+
+</body>
+</html>

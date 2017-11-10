@@ -1,0 +1,85 @@
+    <div class="centercontent">
+        
+        <div id="contentwrapper" class="contentwrapper">
+
+            <div class="contenttitle2">
+                <h3>添加借款人</h3>
+            </div><!--contenttitle-->
+            
+            <div id="validation" class="subcontent">
+
+                <form id="form1" name="form1" class="stdform" method="post" action="/admin.php/user/save">
+
+                    <p>
+                        <label>项目名称</label>
+                        <span class="formwrapper">
+                            <select data-placeholder="-请选择项目-" class="chzn-select" style="width:350px;" tabindex="2" name="pid" required="required">
+                            <option value=""></option> 
+                            <?php 
+                                foreach ($projects as $key => $val) :
+                                    if($val->projectId == $pid):
+                                        $selected = 'selected="selected"';
+                                    else:
+                                        $selected = '';
+                                    endif;
+                                    echo '<option value="'.$val->projectId.'" '.$selected.'>'.$val->projectName.'</option>';
+                                endforeach;
+                            ?>
+                            </select>
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>姓名</label>
+                        <span class="field"><input type="text" name="name" id="name" class="smallinput" required="required" /></span>
+                    </p>
+                    
+                    <p>
+                        <label>身份证</label>
+                        <span class="field"><input type="text" name="number" id="number" class="smallinput" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>抵押品</label>
+                        <span class="field"><input type="text" name="dbwp" id="dbwp" class="smallinput" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>抵押金额</label>
+                        <span class="field"><input type="text" name="dbamount" id="dbamount" class="smallinput" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>借款金额</label>
+                        <span class="field"><input type="text" name="jkamount" id="jkamount" class="smallinput" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>日期</label>
+                        <span class="field"><input type="text" name="time" id="time" class="smallinput" required="required" readonly="readonly" /></span>
+                    </p>
+                    
+                    <p class="stdformbutton">
+                        <button class="submit radius2">提 交</button>
+                        <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                    </p>
+                </form>
+
+            </div><!--subcontent-->
+        
+        </div><!--contentwrapper-->
+        
+    </div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+<script>
+    jQuery(document).ready(function(){
+        jQuery('#time').datetimepicker({
+            timeFormat: "HH:mm:ss",
+            dateFormat: "yy-mm-dd"
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+    <div class="centercontent">
+        
+        <div id="contentwrapper" class="contentwrapper">
+
+            <div class="contenttitle2">
+                <h3>编辑会员</h3>
+            </div><!--contenttitle-->
+            
+            <div id="validation" class="subcontent">
+
+                <form id="form1" name="form1" class="stdform" method="post" action="/admin.php/member/save">
+
+                    <p>
+                        <label>姓名</label>
+                        <span class="field"><input type="text" name="realname" id="realname" class="smallinput" value="<?php echo $realname;?>" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>手机</label>
+                        <span class="field"><input type="text" name="mobile" id="mobile" class="smallinput"  value="<?php echo $mobile;?>" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>身份证</label>
+                        <span class="field"><input type="text" name="number" id="number" value="<?php echo $identificationNumber;?>" class="smallinput" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>银行卡号</label>
+                        <span class="field"><input type="text" name="card" id="card" value="<?php echo $bankcard;?>" class="smallinput" required="required" /></span>
+                    </p>
+                    <!--
+                    <p>
+                        <label>修改密码</label>
+                        <span class="field"><input type="password" name="pwd" id="pwd" class="smallinput" /> (忽略则不修改)</span>
+                    </p>
+
+                    <p>
+                        <label>确认密码</label>
+                        <span class="field"><input type="password" name="newpwd" id="newpwd" class="smallinput" /></span>
+                    </p>
+                    -->
+                    <p>
+                        <label>性别</label>
+                        <span class="formwrapper">
+                            <div class="radio">
+                                <span>
+                                    <input type="radio" name="sex" checked="checked" value="1" style="opacity: 0;">
+                                </span>
+                            </div> 男 &nbsp; &nbsp;
+                            <div class="radio">
+                                <span>
+                                    <input type="radio" name="sex" value="0" style="opacity: 0;">
+                                </span>
+                            </div> 女
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>婚姻状况</label>
+                        <span class="field">
+                            <select name="marital" id="marital">
+                                <option value="">-请选择-</option>
+                                <option value="未婚" <?php if($marital == '未婚'): ?>selected="selected"<?php endif;?>>未婚</option>
+                                <option value="已婚" <?php if($marital == '已婚'): ?>selected="selected"<?php endif;?>>已婚</option>
+                                <option value="离异" <?php if($marital == '离异'): ?>selected="selected"<?php endif;?>>离异</option>
+                                <option value="丧偶" <?php if($marital == '丧偶'): ?>selected="selected"<?php endif;?>>丧偶</option>
+                            </select>
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>学历</label>
+                        <span class="field">
+                            <select name="education" id="education">
+                                <option value="">-请选择-</option>
+                                <option value="初中" <?php if($education == '初中'): ?>selected="selected"<?php endif;?>>初中</option>
+                                <option value="高中" <?php if($education == '高中'): ?>selected="selected"<?php endif;?>>高中</option>
+                                <option value="大专" <?php if($education == '大专'): ?>selected="selected"<?php endif;?>>大专</option>
+                                <option value="本科" <?php if($education == '本科'): ?>selected="selected"<?php endif;?>>本科</option>
+                                <option value="硕士" <?php if($education == '硕士'): ?>selected="selected"<?php endif;?>>硕士</option>
+                                <option value="博士" <?php if($education == '博士'): ?>selected="selected"<?php endif;?>>博士</option>
+                            </select>
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>从事工作</label>
+                        <span class="field"><input type="text" name="job" id="job" value="<?php echo $job;?>" class="smallinput"/></span>
+                    </p>
+
+                    <p>
+                        <label>所在地</label>
+                        <span class="field" id="prov_city">
+                            <select class="prov" name="province"></select> 
+                            <select class="city" name="city"><option>请选择</option></select>
+                        </span>
+                    </p>
+                    
+                    <p class="stdformbutton">
+                        <input type="hidden" name="id" id="id" value="<?php echo $id;?>" />
+                        <button class="submit radius2">提 交</button>
+                        <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                    </p>
+                </form>
+
+            </div><!--subcontent-->
+        
+        </div><!--contentwrapper-->
+        
+    </div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+<script>
+    jQuery(document).ready(function(){
+        jQuery("#prov_city").citySelect({prov:"<?php echo $province;?>", city:"<?php echo $city;?>"});
+    });
+</script>
+</body>
+</html>

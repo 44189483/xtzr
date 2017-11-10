@@ -1,0 +1,76 @@
+    <div class="centercontent tables">
+    
+        <div id="contentwrapper" class="contentwrapper">
+                
+            <div class="contenttitle2">
+            	<h3>招骋管理</h3>
+            </div><!--contenttitle-->
+            
+            <div class="tableoptions">
+                <button type="button" onclick="window.location.href='/admin.php/joinus/add'">添加招骋</button>
+            </div>
+
+            <!--tableoptions-->	
+
+            <form name="form" id="form" method="POST" action="/admin.php/joinus/del">
+                <table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb" id="tab">
+                    <thead>
+                        <tr>
+                            <th class="head0">
+                                <input type="checkbox" class="checkall"/>
+                            </th>
+                            <th class="head3">序号</th>
+                            <th class="head0">职位名称</th>
+                            <th class="head3">排序</th>
+                            <th class="head3">时间</th>
+                            <th class="head0">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php if($rows):?>
+                        <?php foreach ($rows as $k => $val):?>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="id[]" value="<?php echo $val->articleId;?>" />
+                            </td>
+                            <td class="head3">
+                                <?php 
+                                    if(empty($current_page)):
+                                        echo $k+1;
+                                    else:
+                                        echo $per_page*($current_page-1)+$k+1;
+                                    endif;
+                                ?>
+                            </td>
+                            <td><?php echo $val->articleTitle; ?></td>
+                            <td class="head3">
+                                <input type="text" value="<?php echo $val->articleOrd;?>" name="ord" id="input_2_<?php echo $val->articleId;?>" onchange="saveData('article','articleOrd',this.value,'articleId',this.id);" size="1"  onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+                            </td>
+                            <td class="head3">
+                                <?php echo $val->createTime; ?>
+                            </td>
+                            <td class="center">
+                                <a href="<?php echo site_url('joinus/edit/'.$val->articleId); ?>">编辑</a> / <a data-href="<?php echo site_url('joinus/del/'.$val->articleId); ?>" class="delete">删除</a></td>
+                        </tr>
+                        <?php endforeach;?>
+                    <?php else:?>
+                        <tr><td colspan="8" align="center">暂无信息...</td></tr>
+                    <?php endif;?>
+                    </tbody>
+                </table>
+
+                <div class="dataTables_paginate paging_full_titles" id="dyntable_paginate">
+                    <button type="button" class="deletebutton">删除选中</button>
+                    <?php echo $page;?>
+                </div>
+            </form>
+        
+        </div><!--contentwrapper-->
+        
+	</div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+
+</body>
+</html>

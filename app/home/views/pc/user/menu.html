@@ -1,0 +1,18 @@
+            <div class="c4 fl">
+                <div class="info-panel tc">
+                  <p>
+                    <img src="/<?php if(!empty($avatar)): echo $avatar;else:?>public/home/pc/images/avatar_detalut.png<?php endif;?>" alt="" class="wh100 mtb20 avatar" />
+                  </p>
+                  <p class="mt10"><?php echo $mobile;?></p>
+                  <p class="mt10">账户余额:0</p>
+                </div>
+                <div class="info-panel tc">
+                  <ul class="menu">
+                    <li><a href="/user" <?php if($fname=='index' || $fname=='mysafe'):?>class="f-orange"<?php endif;?>>基本信息</a></li>
+                    <li><a href="/user/mylend" <?php if($fname=='mylend'):?>class="f-orange"<?php endif;?>>我的出借</a></li>
+                    <li><a href="/user/myproperty" <?php if($fname=='myproperty'):?>class="f-orange"<?php endif;?>>我的资产</a></li>
+                    <li><a href="/user/logout">退出</a></li>
+                    <li><img src="/public/home/pc/images/m_logo.png" alt="" /></li>
+                  </ul>
+                </div>
+              </div>

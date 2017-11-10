@@ -1,0 +1,102 @@
+    <div class="centercontent tables">
+    
+        <div id="contentwrapper" class="contentwrapper">
+                
+            <div class="contenttitle2">
+            	<h3>融资人</h3>
+            </div><!--contenttitle-->
+
+            <div class="tableoptions">
+                <form method="GET" action="">
+                    <label>
+                        当前项目:<?php echo $pname;?>
+                    </label>
+                    &nbsp;
+                    <button type="button" onclick="window.location.href='/admin.php/raisefund/add/<?php echo $pid;?>'">增加融资人</button>
+                    <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                </form>
+            </div>
+
+            <!--tableoptions-->	
+
+            <div class="dataTables_wrapper" id="dyntable_wrapper">
+
+                <form name="form" id="form" method="POST" action="/admin.php/raisefund/del">
+                    <input type="hidden" value="<?php echo $pid;?>" name="pid"/>
+                    <table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb" id="tab">
+                        <thead>
+                            <tr>
+                                <th class="head0">
+                                    <input type="checkbox" class="checkall"/>
+                                </th>
+                                <th class="head0">姓名</th>
+                                <th class="head0">手机</th>
+                                <th class="head3">收取利息</th>
+                                <th class="head3">收取本金</th>
+                                <th class="head3">状态</th>
+                                <th class="head3">时间</th>
+                                <th class="head0">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if($rows):?>
+                            <?php foreach ($rows as $k => $val):?>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="id[]" value="<?php echo $val->id;?>" />
+                                </td>
+                                <td>
+                                    <?php echo $val->realname; ?>
+                                </td>
+                                <td>
+                                    <?php echo $val->mobile;?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->interest; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->principal; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php 
+                                    switch ($val->status) {
+                                        case '0':
+                                            echo '未收款';
+                                            break;
+                                        case '1':
+                                            echo '已收款';
+                                            break;
+                                    }
+                                    ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->startTime; ?>
+                                </td>
+                                <td class="center">
+                                    <a href="<?php echo site_url('raisefund/edit/'.$val->id); ?>">编辑</a> / <a data-href="<?php echo site_url('raisefund/del/'.$val->id.'/'.$pid); ?>" class="delete">删除</a>
+                                </td>
+                            </tr>
+                            <?php endforeach;?>
+                        <?php else:?>
+                            <tr><td colspan="8" align="center">暂无信息...</td></tr>
+                        <?php endif;?>
+                        </tbody>
+                    </table>
+                    <div class="dataTables_paginate paging_full_titles" id="dyntable_paginate">
+                        <div class="dataTables_info" id="dyntable_info">累计项目融资人:<?php echo $total;?>个</div>
+                        <button type="button" class="deletebutton">删除选中</button>
+                        <?php echo $page;?>
+                    </div>
+                </form>
+
+            </div>
+        
+        </div><!--contentwrapper-->
+        
+	</div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+
+</body>
+</html>

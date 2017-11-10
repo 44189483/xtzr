@@ -1,0 +1,143 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="container">
+            <div class="row">
+              <?php $this->load->view($this->templates.'/user/menu.html');?>
+              <div class="c8 fl">
+                <div class="lendrow">
+                  <div class="brown-bg fl tc">
+                    <p class="mt35">
+                      <span class="f-red f25"><?php echo $total_interest;?></span>
+                      <br/>
+                      已赚收益
+                    </p>
+                  </div>
+                  <div class="rightcolmn">
+                    <ul>
+                      <li>
+                        <span class="f-red f25"><?php echo $interest + $total_principal;?></span>
+                        <br/>
+                        待收本息
+                      </li>
+                      <li class="f25">
+                        =
+                      </li>
+                      <li>
+                        <span class="f-red f25"><?php echo $interest;?></span>
+                        <br/>
+                        待收利息
+                      </li>
+                      <li class="f25">
+                        +
+                      </li>
+                      <li>
+                        <span class="f-red f25"><?php echo $total_principal;?></span>
+                        <br/>
+                        待收本金
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="info-panel">
+                  <div id="tabs_menu2">
+                    <h4>已出借项目</h4>
+                    <h4 onclick="switchTab(2,1)" class="active">全部出借状态</h4>
+                    <h4 onclick="switchTab(2,2)">出借中</h4>
+                    <h4 onclick="switchTab(2,3)">回款中</h4>
+                    <h4 onclick="switchTab(2,4)">已还款</h4>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div id="tabs_main2">
+                    <ul style="display:none"></ul>
+                    <ul>
+                      <li>
+                        <?php foreach ($all as $key => $val):?>
+                        <div class="lendrow">
+                          <div class="brown-bg fl tc">
+                            <p class="mt35">
+                              <span class="f-red f25"><?php echo $val->principal;?></span>
+                              <br/>
+                              已投金额
+                            </p>
+                          </div>
+                          <div class="rightcolmn">
+                            <p><a href="/lend/detail/<?php echo $val->projectId;?>" class="f20"><?php echo $val->projectName;?></a><span class="fr btn-small btn-s-f"><?php echo $val->className;?></span></p>
+                            <p>
+                              年化收益率: <span class="f-red"><?php echo $val->yearRate;?>%</span> 
+                              借款期限: <span class="f-red"><?php echo $val->timeLimit;?></span>
+                            </p>
+                            <p>预期收益: <span class="f-red"><?php echo $val->interest;?></span></p>
+                          </div>
+                        </div>
+                        <?php endforeach;?>
+                      </li>
+                    </ul>
+                    <ul style="display:none">
+                        <?php foreach ($lend as $key => $val):?>
+                        <div class="lendrow">
+                          <div class="brown-bg fl tc">
+                            <p class="mt35">
+                              <span class="f-red f25"><?php echo $val->principal;?></span>
+                              <br/>
+                              已投金额
+                            </p>
+                          </div>
+                          <div class="rightcolmn">
+                            <p><a href="/lend/detail/<?php echo $val->projectId;?>" class="f20"><?php echo $val->projectName;?></a><span class="fr btn-small btn-s-f"><?php echo $val->className;?></span></p>
+                            <p>
+                              年化收益率: <span class="f-red"><?php echo $val->yearRate;?>%</span> 
+                              借款期限: <span class="f-red"><?php echo $val->timeLimit;?></span>
+                            </p>
+                            <p>预期收益: <span class="f-red"><?php echo $val->interest;?></span></p>
+                          </div>
+                        </div>
+                        <?php endforeach;?>
+                    </ul>
+                    <ul style="display:none">
+                        <?php foreach ($repayment as $key => $val):?>
+                        <div class="lendrow">
+                          <div class="brown-bg fl tc">
+                            <p class="mt35">
+                              <span class="f-red f25"><?php echo $val->principal;?></span>
+                              <br/>
+                              已投金额
+                            </p>
+                          </div>
+                          <div class="rightcolmn">
+                            <p><a href="/lend/detail/<?php echo $val->projectId;?>" class="f20"><?php echo $val->projectName;?></a><span class="fr btn-small btn-s-f"><?php echo $val->className;?></span></p>
+                            <p>
+                              年化收益率: <span class="f-red"><?php echo $val->yearRate;?>%</span> 
+                              借款期限: <span class="f-red"><?php echo $val->timeLimit;?></span>
+                            </p>
+                            <p>预期收益: <span class="f-red"><?php echo $val->interest;?></span></p>
+                          </div>
+                        </div>
+                        <?php endforeach;?>
+                    </ul>
+                    <ul style="display:none">
+                        <?php foreach ($hadrepayment as $key => $val):?>
+                        <div class="lendrow">
+                          <div class="brown-bg fl tc">
+                            <p class="mt35">
+                              <span class="f-red f25"><?php echo $val->principal;?></span>
+                              <br/>
+                              已投金额
+                            </p>
+                          </div>
+                          <div class="rightcolmn">
+                            <p><a href="/lend/detail/<?php echo $val->projectId;?>" class="f20"><?php echo $val->projectName;?></a><span class="fr btn-small btn-s-f"><?php echo $val->className;?></span></p>
+                            <p>
+                              年化收益率: <span class="f-red"><?php echo $val->yearRate;?>%</span> 
+                              借款期限: <span class="f-red"><?php echo $val->timeLimit;?></span>
+                            </p>
+                            <p>预期收益: <span class="f-red"><?php echo $val->interest;?></span></p>
+                          </div>
+                        </div>
+                        <?php endforeach;?>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>

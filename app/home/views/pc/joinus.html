@@ -1,0 +1,25 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="row column">
+            <div id="tabs_menu1">
+              <h4><a href="/contactus">联系我们</a></h4>
+              <h4 class="active">加入我们</h4>
+            </div>
+            <div class="clearfix"></div>
+            <div id="tabs_main1" class="info">
+                <p>
+                  <img src="/public/home/pc/images/2.jpg" alt="" width="960" />
+                </p>
+                <?php foreach ($joinus as $key => $val):?>
+                <div class="joinus">
+                  <h3 class="f-orange"><?php echo $val->articleTitle;?></h3>
+                  <p class="s-line"></p>
+                  <p>
+                    <h4>岗位职责：</h4>
+                    <?php echo $val->articleContent;?>
+                  </p>
+                </div>
+                <?php endforeach;?>       
+            </div>
+          </div>
+      </div>

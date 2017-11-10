@@ -1,0 +1,75 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="row info-panel">
+              <div class="tc pr">
+                <span class="f25">注册新泰中融</span>
+                <span class="pa tr10">
+                  <a href="/member/login">已有账号?去
+                  <span class="f-orange">登陆</span></a>
+                </span>
+              </div>
+              <p class="s-line"></p>
+              <form id="form1" name="form1" class="frm" method="POST" action="/member/checkregister">
+                <table class="center" width="700">
+                  <tr>
+                    <td>手机号:</td>
+                    <td>
+                      <input type="text" name="user" id="user"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>邮　箱:</td>
+                    <td>
+                      <input type="text" name="email" id="email"/>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>密　码:</td>
+                      <td><input type="password" name="pwd" id="pwd"/></td>
+                    </tr>
+                    <tr>
+                      <td>确认密码:</td>
+                      <td><input type="password" name="repwd" id="repwd" required="" /></td>
+                    </tr>
+                  <tr>
+                    <td>图片验证码:</td>
+                    <td>
+                      <input type="text" name="verifcode" id="verifcode"/>
+                      <span>
+                        <img src="/member/imgverifycode" name="imgCaptcha" id="imgCaptcha" class="code"/>
+                      </span> 
+                      <a href="javascript:void(0);" onclick="document.getElementById('imgCaptcha').src='/member/imgverifycode';" class="f-orange">看不清?再换一张</a>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>手机验证码:</td>
+                      <td>
+                        <input type="text" name="phonecode" id="phonecode"/>
+                        <input type="button" class="btn btn-f" id="getphonecode" value="短信验证" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>推荐或渠道码:</td>
+                      <td><input type="text" name="recommcode" id="recommcode" /></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>
+                        <div class="set">
+                        <img src="/public/home/pc/images/checkbox_t.png" alt="" onclick="" /> 我已阅读并同意
+                        <a href="/member/agreement" class="f-red" target="_blank">《注册协议》</a>
+                        <input type="hidden" name="agree" id="agree"/>
+                        </div>
+                      </td>
+                    </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                      <input type="hidden" name="formtype" id="formtype" value="register"/>
+                      <button type="submit" name="submit" id="submit" class="btn btn-o ml50">注 册</button>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+          </div>
+      </div>

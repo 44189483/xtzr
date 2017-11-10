@@ -1,0 +1,56 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="row info-panel">
+              <div class="tc pr">
+                <span class="f25">登录新泰中融</span>
+                <span class="pa tr10">
+                  <a href="/member/register">没有账号?去
+                  <span class="f-orange">注册</span></a>
+                </span>
+              </div>
+              <p class="s-line"></p>
+              <form id="form1" name="form1" class="frm" method="POST" action="/member/checklogin">
+                <table class="center" width="700">
+                  <tr>
+                    <td class="w180">用户名:</td>
+                    <td>
+                      <input type="text" name="user" id="user"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>密　码:</td>
+                    <td>
+                      <input type="password" name="pwd" id="pwd" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>图片验证码:</td>
+                    <td>
+                      <input type="text" name="verifcode" id="verifcode" />
+                      <span>
+                        <img src="/member/imgverifycode" name="imgCaptcha" id="imgCaptcha" class="code"/>
+                      </span> 
+                      <a href="javascript:void(0);" onclick="document.getElementById('imgCaptcha').src='/member/imgverifycode';" class="f-orange">看不清?再换一张</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                      <div class="set">
+                        <img src="/public/home/pc/images/checkbox_f.png" alt="" id="rem" /> 记住用户名
+                        <a href="/member/findpwd" class="forgetpwd">忘记密码</a>
+                        <input type="hidden" name="rember" id="rember" value="0"/>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td >
+                      <input type="hidden" name="formtype" id="formtype" value="login"/>
+                      <button type="submit" name="submit" id="submit" class="btn btn-o ml50">登 陆</button>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+          </div>
+      </div>

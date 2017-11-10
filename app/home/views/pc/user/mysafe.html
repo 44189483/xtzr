@@ -1,0 +1,103 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="container">
+            <div class="row">
+              <?php $this->load->view($this->templates.'/user/menu.html');?>
+              <div class="c8 fl">
+                <div class="info-panel">
+                  <ul class="sub-nav">
+                    <li><a href="/user/myinfo">个人设置</a></li>
+                    <li><a href="/user/mysafe" class="f-orange">安全设置</a></li>
+                  </ul>
+                  <table class="tbdashed" width="100%">
+                    <tr>
+                      <td>安全等级</td>
+                      <td colspan="2" class="w400">
+                        <div class="progress pr t16 w120">
+                          <span class="orange" style="width: <?php echo $level;?>%;"></span>
+                        </div>
+                        <span class="fr">
+                          <?php if(isset($logTime)):?>上次登录时间：<?php echo $logTime;?><?php endif;?>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>手机绑定 </td>
+                      <td colspan="2">
+                        <div>
+                          <?php echo preg_replace('/(\d{3})\d{8}/', '$1********', $mobile);?>
+                          <span class="fr"><button type="button" class="btn-small btn-s-g"><!--bind-->已绑定</button></span>
+                        </div>
+                        <div class="hide fr">
+                          <input name="mobile" id="mobile" value="<?php echo $mobile;?>" />
+                          <button type="button" class="btn-small btn-s-o ok">确定</button>
+                          <button type="button" class="btn-small cancel">取消</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>邮箱绑定</td>
+                      <td colspan="2">
+                        <div>
+                          <?php if(!empty($email)):?>
+                            <?php echo $email;?>
+                            <span class="fr"><button type="button" class="btn-small btn-s-g bind">已绑定</button></span>
+                          <?php else:?>
+                            绑定邮箱使您的账户更安全
+                            <span class="fr"><button type="button" class="btn-small btn-s-o bind">未绑定</button></span>
+                          <?php endif;?>
+                        </div>
+                        <div class="hide fr">
+                          <input name="email" id="email" value="<?php echo $email;?>" />
+                          <button type="button" class="btn-small btn-s-o ok">确定</button>
+                          <button type="button" class="btn-small cancel">取消</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>银行卡绑定</td>
+                      <td colspan="2">
+                        <div>
+                          <?php if(!empty($bankcard)):?>
+                            <?php echo $bankcard;?>
+                            <span class="fr"><button type="button" class="btn-small btn-s-g bind">已绑定</button></span>
+                          <?php else:?> 
+                            您尚绑定银行卡，请绑定银行卡
+                            <span class="fr"><button type="button" class="btn-small btn-s-o bind">未绑定</button></span>
+                          <?php endif;?>
+                        </div>
+                        <div class="fr hide">
+                          <input name="bankcard" id="bankcard" value="<?php echo $bankcard;?>" />
+                          <button type="button" class="btn-small btn-s-o ok">确定</button>
+                          <button type="button" class="btn-small cancel">取消</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <form id="form1" name="form1" method="POST" action="/user/save" class="frm">
+                  <table width="100%">
+                    <tr>
+                      <td colspan="3">
+                        <b>修改密码</b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>新密码:</td>
+                      <td colspan="2"><input type="password" name="pwd" id="pwd"/></td>
+                    </tr>
+                    <tr>
+                      <td>确认密码:</td>
+                      <td colspan="2"><input type="password" name="repwd" id="repwd"/></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td class="tc" colspan="2"><input type="hidden" name="formtype" id="formtype" value="mysafe"/><button type="submit" name="submit" id="submit" class="btn-o">确认修改</button></td>
+                    </tr>
+                  </table>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>

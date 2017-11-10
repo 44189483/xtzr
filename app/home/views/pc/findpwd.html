@@ -1,0 +1,43 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="row info-panel">
+              <div class="tc pr">
+                <span class="f25">找回密码</span>
+              </div>
+              <p class="s-line"></p>
+              <form id="form1" name="form1" class="frm" method="POST" action="/member/checkfindpwd">
+                <table class="center" width="700">
+                  <tr>
+                    <td>手机号:</td>
+                    <td>
+                      <input type="text" name="user" id="user" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>图片验证码:</td>
+                    <td>
+                      <input type="text" name="verifcode" id="verifcode"/>
+                      <span>
+                        <img src="/member/imgverifycode" name="imgCaptcha" id="imgCaptcha" class="code"/>
+                      </span> 
+                      <a href="javascript:void(0);" onclick="document.getElementById('imgCaptcha').src='/member/imgverifycode';" class="f-red">看不清?再换一张</a>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>手机验证码:</td>
+                      <td>
+                        <input type="text" name="phonecode" id="phonecode" />
+                        <input type="button" class="btn btn-f" id="getphonecode" value="短信验证" />
+                      </td>
+                    </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                      <input type="hidden" name="formtype" id="formtype" value="findpwd"/>
+                      <button type="submit" name="submit" id="submit" class="btn btn-o ml25">下一步</button>
+                    </td>
+                  </tr>
+                </table>
+              </form>
+          </div>
+      </div>

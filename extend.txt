@@ -1,0 +1,6 @@
+NameVirtualHost *:8083
+Listen 8083
+<VirtualHost *:8083>
+    DocumentRoot "E:\xampp\htdocs\ci" 
+    ServerName localhost
+</VirtualHost>

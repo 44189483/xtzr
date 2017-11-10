@@ -1,0 +1,77 @@
+    <div class="centercontent">
+        
+        <div id="contentwrapper" class="contentwrapper">
+
+            <div class="contenttitle2">
+                <h3>编辑融资人</h3>
+            </div><!--contenttitle-->
+            
+            <div id="validation" class="subcontent">
+
+                <form id="form1" name="form1" class="stdform" method="post" action="/admin.php/raisefund/save">
+
+                    <p>
+                        <label>项目名称</label>
+                        <?php echo $pname;?>
+                    </p>
+
+                    <p>
+                        <label>姓名</label>
+                        <span>
+                            <select data-placeholder="-请选择会员-" class="chzn-select" style="width:350px;" tabindex="2" name="mid" required="required">
+                            <option value=""></option> 
+                            <?php 
+                                foreach ($members as $key => $val) :
+                                    if($val->id == $mid):
+                                        $selected = 'selected="selected"';
+                                    else:
+                                        $selected = '';
+                                    endif;
+                                    echo '<option value="'.$val->id.'" '.$selected.'>'.$val->realname.'-'.$val->mobile.'</option>';
+                                endforeach;
+                            ?>
+                            </select>
+                        </span>
+                    </p>
+                    
+                    <p>
+                        <label>投资金额</label>
+                        <span class="field"><input type="text" name="principal" id="principal" class="smallinput" required="required" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" value="<?php echo $principal;?>" /></span>
+                    </p>
+
+                    <p>
+                        <label>收益</label>
+                        <span class="field"><input type="text" name="interest" id="interest" class="smallinput" required="required" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" value="<?php echo $interest;?>"/></span>
+                    </p>
+
+                    <p>
+                        <label>日期</label>
+                        <span class="field"><input type="text" name="time" id="time" class="smallinput" required="required" readonly="readonly" value="<?php echo $startTime;?>"/></span>
+                    </p>
+                    
+                    <p class="stdformbutton">
+                        <input type="hidden" name="id" id="id" value="<?php echo $id;?>" />
+                        <input type="hidden" name="pid" id="pid" value="<?php echo $pid;?>" />
+                        <button class="submit radius2">提 交</button>
+                        <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                    </p>
+                </form>
+
+            </div><!--subcontent-->
+        
+        </div><!--contentwrapper-->
+        
+    </div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+<script>
+    jQuery(document).ready(function(){
+        jQuery('#time').datetimepicker({
+            timeFormat: "HH:mm:ss",
+            dateFormat: "yy-mm-dd"
+        });
+    });
+</script>
+</body>
+</html>

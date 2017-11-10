@@ -1,0 +1,16 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="row column">
+            <div id="tabs_menu1">
+              <?php foreach ($classes as $key => $val):?>
+                <h4 <?php if($val->classId==$cid):?>class="active"<?php endif;?>><a href="/news/<?php echo $val->classId;?>"><?php echo $val->className;?></a></h4>
+              <?php endforeach;?>
+            </div>
+            <div class="clearfix"></div>
+            <div id="tabs_main1" class="news">
+              <?php foreach ($rows as $key => $val):?>
+                <p><a href="/news/detail/<?php echo $val->articleId;?>"><?php echo $val->articleTitle;?><span class="fr"><?php echo $val->createTime;?></span></a></p>
+              <?php endforeach;?>
+            </div>
+          </div>
+      </div>

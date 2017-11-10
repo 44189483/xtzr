@@ -1,0 +1,201 @@
+    <div class="centercontent">
+        
+        <div id="contentwrapper" class="contentwrapper">
+
+            <div class="contenttitle2">
+                <h3>编辑项目</h3>
+            </div><!--contenttitle-->
+            
+            <div id="validation" class="subcontent">
+
+                <form id="form1" name="form1" class="stdform" method="post" action="/admin.php/project/save">
+
+                    <p>
+                        <label>类型</label>
+                        <span class="field">
+                            <select name="type" id="type" required="required" >
+                                <option value="0" <?php if($projectType == 0):?>selected="selected"<?php endif;?>>-出借服务-</option>
+                                <option value="1" <?php if($projectType == 1):?>selected="selected"<?php endif;?>>-新手专享-</option>
+                            </select>
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>项目名称</label>
+                        <span class="field"><input type="text" name="name" id="name" class="smallinput" value="<?php echo $projectName;?>" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>出借上限(元)</label>
+                        <span class="field"><input type="text" name="ulimit" id="ulimit" class="smallinput"  value="<?php echo $upperLendLimit;?>" required="required" /></span>
+                    </p>
+                    
+                    <p>
+                        <label>借款金额(元)</label>
+                        <span class="field"><input type="text" name="lamount" id="lamount" class="smallinput"  value="<?php echo $loanAmount;?>" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>出借款最低金额(元)</label>
+                        <span class="field"><input type="text" name="mlamount" id="mlamount" class="smallinput"  value="<?php echo $minLoanAmount;?>" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>起息日</label>
+                        <span class="field"><input type="text" name="date" id="date" class="smallinput"  value="<?php echo $interestDate;?>" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>年化收益率</label>
+                        <span class="field">
+                            <select name="rate" id="rate" required="required" >
+                                <option value="">-请选择-</option>
+                                <?php 
+                                foreach ($classes['yearRate'] as $key => $val) :
+                                    if($val->className == $yearRate):
+                                        $selected = 'selected="selected"';
+                                    else:
+                                        $selected = '';
+                                    endif;
+                                    echo '<option value="'.$val->className.'" '.$selected.'>'.$val->className.'%</option>';
+                                endforeach;
+                                ?>
+                            </select>
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>借款期限</label>
+                        <span class="field">
+                            <select name="tlimit" id="tlimit" required="required" >
+                                <option value="">-请选择-</option>
+                                <?php 
+                                foreach ($classes['timeLimit'] as $key => $val) :
+                                    if($val->className == $timeLimit):
+                                        $selected = 'selected="selected"';
+                                    else:
+                                        $selected = '';
+                                    endif;
+                                    echo '<option value="'.$val->className.'" '.$selected.'>'.$val->className.'</option>';
+                                endforeach;
+                                ?>
+                            </select>
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>还款方式</label>
+                        <span class="field">
+                            <select name="repay" id="repay" required="required" >
+                                <option value="">-请选择-</option>
+                                <?php 
+                                foreach ($classes['repayment'] as $key => $val) :
+                                    if($val->className == $repayment):
+                                        $selected = 'selected="selected"';
+                                    else:
+                                        $selected = '';
+                                    endif;
+                                    echo '<option value="'.$val->className.'" '.$selected.'>'.$val->className.'</option>';
+                                endforeach;
+                                ?>
+                            </select>
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>状态</label>
+                        <span class="field">
+                            <select name="status" id="status" required="required" >
+                                <option value="">-请选择-</option>
+                                <?php 
+                                foreach ($classes['status'] as $key => $val) :
+                                    if($val->classId == $status):
+                                        $selected = 'selected="selected"';
+                                    else:
+                                        $selected = '';
+                                    endif;
+                                    echo '<option value="'.$val->classId.'" '.$selected.'>'.$val->className.'</option>';
+                                endforeach;
+                                ?>
+                            </select>
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>额外信息</label>
+                        <span class="field"><input type="text" name="other" id="other" class="smallinput"  value="<?php echo $projectOther;?>" /></span>
+                    </p>
+
+                    <p>
+                        <label>出借进度</label>
+                        <span class="field"><input type="text" name="progress" id="progress" class="smallinput" required="required" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')" style="width:110px" value="<?php echo $lendProgress;?>"/></span>
+                    </p>
+
+                    <p>
+                        <label>日期</label>
+                        <span class="field"><input type="text" name="time" id="time" class="smallinput" value="<?php echo $createTime;?>"  required="required" readonly="readonly" /></span>
+                    </p>
+
+                    <!--
+                    <p>
+                        <label>风险控制</label>
+                        <span class="field"><textarea id="risk" name="risk"><?php echo $riskManagement;?></textarea>
+                    </p>
+                    -->
+                    <p class="stdformbutton">
+                        <button class="submit radius2">提 交</button>
+                        <input type="hidden" name="id" id="id" value="<?php echo $projectId;?>" />
+                        <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                    </p>
+                </form>
+
+            </div><!--subcontent-->
+        
+        </div><!--contentwrapper-->
+        
+    </div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+<script>
+    KindEditor.ready(function(K) {
+        editor1 = K.create('textarea[name="risk"]', {
+            cssPath : '/public/editor/plugins/code/prettify.css',
+            uploadJson : '/public/editor/php/upload_json.php',
+            fileManagerJson : '/public/editor/php/file_manager_json.php',
+            allowFileManager : true,
+            afterCreate : function() {
+                var self = this;
+                K.ctrl(document, 13, function() {
+                    self.sync();
+                    K('form[name=form1]')[0].submit();
+                });
+                K.ctrl(self.edit.doc, 13, function() {
+                    self.sync();
+                    K('form[name=form1]')[0].submit();
+                });
+            },afterBlur: function(){this.sync();},
+            themeType : 'simple',
+            resizeType: 1,
+            height : "200px", 
+            width:"100%",   //将宽度设置为div宽度的100%即可
+            filterMode : false, 
+            dialogAlignType:"page",
+            items: [
+                'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link','source'
+            ]
+            });
+        prettyPrint();
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('#time').datetimepicker({
+            timeFormat: "HH:mm:ss",
+            dateFormat: "yy-mm-dd"
+        });
+    });
+</script>
+</body>
+</html>

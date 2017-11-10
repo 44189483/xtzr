@@ -1,0 +1,83 @@
+    <div class="centercontent tables">
+    
+        <div id="contentwrapper" class="contentwrapper">
+                
+            <div class="contenttitle2">
+            	<h3>业务员管理</h3>
+            </div><!--contenttitle-->
+
+            <div class="tableoptions">
+                <form method="GET" action="">
+                    <label><input type="text" name="mobile" id="mobile" placeholder="手机号" value="<?php echo $mobile;?>" /></label>
+                    &nbsp;
+                    <button type="submit">查询</button>
+                    <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                    <button type="button" class="floatright" onclick="window.location.href='/admin.php/salesman/add'">添加业务员</button>
+                </form>
+            </div>
+
+            <!--tableoptions-->	
+
+            <div class="dataTables_wrapper" id="dyntable_wrapper">
+
+                <form name="form" id="form" method="POST" action="/admin.php/salesman/del">
+                    <table cellpadding="0" cellspacing="0" border="0" class="stdtable stdtablecb" id="tab">
+                        <thead>
+                            <tr>
+                                <th class="head0">
+                                    <input type="checkbox" class="checkall"/>
+                                </th>
+                                <th class="head0">姓名</th>
+                                <th class="head3">身份证</th>
+                                <th class="head3">手机</th>
+                                <th class="head3">时间</th>
+                                <th class="head0">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if($rows):?>
+                            <?php foreach ($rows as $k => $val):?>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="id[]" value="<?php echo $val->id;?>" />
+                                </td>
+                                <td>
+                                    <?php echo $val->realname; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->identificationNumber;?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->mobile; ?>
+                                </td>
+                                <td class="head3">
+                                    <?php echo $val->createTime; ?>
+                                </td>
+                                <td class="center">
+                                    <a href="<?php echo site_url('salesman/edit/'.$val->id); ?>">编辑</a> / <a data-href="<?php echo site_url('salesman/del/'.$val->id); ?>" class="delete">删除</a> / <a href="<?php echo site_url('member/index/0/'.$val->id); ?>">其下会员</a>
+                                </td>
+                            </tr>
+                            <?php endforeach;?>
+                        <?php else:?>
+                            <tr><td colspan="9" align="center">暂无信息...</td></tr>
+                        <?php endif;?>
+                        </tbody>
+                    </table>
+                    <div class="dataTables_paginate paging_full_titles" id="dyntable_paginate">
+                        <div class="dataTables_info" id="dyntable_info">业务员共<?php echo $total;?>个</div>
+                        <button type="button" class="deletebutton">删除选中</button>
+                        <?php echo $page;?>
+                    </div>
+                </form>
+
+            </div>
+        
+        </div><!--contentwrapper-->
+        
+	</div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+
+</body>
+</html>

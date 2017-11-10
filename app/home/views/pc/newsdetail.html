@@ -1,0 +1,36 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="row column">
+            <div id="tabs_menu1">
+              <?php foreach ($classes as $key => $val):?>
+                <h4 <?php if($val->classId==$classId):?>class="active"<?php endif;?>><a href="/news/<?php echo $val->classId;?>"><?php echo $val->className;?></a></h4>
+              <?php endforeach;?>
+            </div>
+            <div class="clearfix"></div>
+            <div id="tabs_main1" class="info">
+                <h3 class="tc f20"><?php echo $articleTitle;?></h3>
+                <p class="f16 tc mt5">发表时间:<?php echo $createTime;?></p>
+                <p class="s-line"></p>
+                <br/>
+                <?php echo $articleContent;?>
+            </div>
+          </div>
+          <div class="subtitle">
+            <p class="fl f-gray">
+              上一篇:
+              <?php if($prev):?>
+                <span><a href="/news/detail/<?php echo $prev->articleId;?>"><?php echo $prev->articleTitle;?></a></span>
+              <?php else:?>
+                  无
+              <?php endif;?>
+            </p>
+            <p class="fr f-gray">
+              下一篇:
+              <?php if($next):?>
+                <span><a href="/news/detail/<?php echo $next->articleId;?>"><?php echo $next->articleTitle;?></a></span>
+              <?php else:?>
+                无
+              <?php endif;?>
+            </p>
+          </div>
+      </div>

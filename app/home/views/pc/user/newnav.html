@@ -1,0 +1,40 @@
+  <?php if(!empty($this->session->member->user) && $fname != 'login' && $fname != 'register'):?>
+      <div class="newNav">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-3">
+              <p>
+                <img src="/public/home/images/nav_home_default.png" alt=""/>
+              </p>
+              <p>
+                <a href="/index" <?php if($cname=='Index'):?>class="brown"<?php endif;?>>首页</a>
+              </p>
+            </div>
+            <div class="col-xs-3">
+              <p>
+                <img src="/public/home/images/nav_lend_default.png" alt=""/>
+              </p>
+              <p>
+                <a href="/user/mylend" <?php if($fname=='mylend'):?>class="brown"<?php endif;?>>我的出借</a>
+              </p>
+            </div>
+            <div class="col-xs-3">
+              <p>
+                <img src="/public/home/images/nav_property_default.png" alt=""/>
+              </p>
+              <p>
+                <a href="/user/myproperty" <?php if($fname=='myproperty'):?>class="brown"<?php endif;?>>我的资产</a>
+              </p>
+            </div>
+            <div class="col-xs-3">
+              <p>
+                <img src="/public/home/images/nav_user_default.png" alt=""/>
+              </p>
+              <p>
+                <a href="/user/myinfo" <?php if($fname=='index' || $fname=='mysafe'):?>class="brown"<?php endif;?>>基本信息</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+  <?php endif;?>

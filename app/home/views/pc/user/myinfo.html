@@ -1,0 +1,126 @@
+      <div class="b-line"></div>
+      <div class="container">
+          <div class="container">
+            <div class="row">
+              <?php $this->load->view($this->templates.'user/menu.html');?>
+              <div class="c8 fl">
+                <div class="info-panel">
+                  <ul class="sub-nav">
+                    <li><a href="/user" class="f-orange">个人设置</a></li>
+                    <li><a href="/user/mysafe">安全设置</a></li>
+                  </ul>
+                  <form method="POST" class="frm" action="/user/save" enctype="multipart/form-data">
+                    <table class="center" width="510"> 
+                      <tr>
+                        <td colspan="2" class="tc">
+                          <img id="pic" src="<?php if(!empty($avatar)): echo $avatar;else:?>/public/home/pc/images/avatar_detalut.png<?php endif;?>" class="wh100 mtb20 avatar" />
+                          <input id="upload" name="attchment" type="file" style="display: none"/>
+                          <br/><br/>
+                          <button type="button" class="btn btn-f" id="pic_btn">头像修改</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>姓　名:</td>
+                        <td><input type="text" name="realname" id="realname" value="<?php echo $realname;?>" /></td>
+                      </tr>
+                      <tr>
+                        <td>性　别:</td>
+                        <td>
+                            <input type="radio" name="sex" value="1" <?php if($sex==1):?>checked="checked"<?php endif;?>/> 男
+                            <input type="radio" name="sex" value="0"  <?php if($sex==0):?>checked="checked"<?php endif;?>/> 女
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>婚姻状况:</td>
+                        <td>
+                          <select name="marital" id="marital" class="w390">
+                            <option value="">-请选择-</option>
+                            <option value="未婚" <?php if($marital=='未婚'):?>selected="selected"<?php endif;?>>未婚</option>
+                            <option value="已婚" <?php if($marital=='已婚'):?>selected="selected"<?php endif;?>>已婚</option>
+                            <option value="离异" <?php if($marital=='离异'):?>selected="selected"<?php endif;?>>离异</option>
+                            <option value="丧偶" <?php if($marital=='丧偶'):?>selected="selected"<?php endif;?>>丧偶</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>学　历:</td>
+                        <td>
+                          <select name="education" id="education" class="w390">
+                            <option value="">-请选择-</option>
+                            <option value="初中" <?php if($education=='初中'):?>selected="selected"<?php endif;?>>初中</option>
+                            <option value="高中" <?php if($education=='高中'):?>selected="selected"<?php endif;?>>高中</option>
+                            <option value="大专" <?php if($education=='大专'):?>selected="selected"<?php endif;?>>大专</option>
+                            <option value="本科" <?php if($education=='本科'):?>selected="selected"<?php endif;?>>本科</option>
+                            <option value="硕士" <?php if($education=='硕士'):?>selected="selected"<?php endif;?>>硕士</option>
+                            <option value="博士" <?php if($education=='博士'):?>selected="selected"<?php endif;?>>博士</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>职　业:</td>
+                        <td><input type="text" name="job" id="job" value="<?php echo $job;?>" /></td>
+                      </tr>
+                      <tr>
+                        <td>所在城市:</td>
+                        <td>
+                          <span class="field" id="prov_city">
+                            <select class="prov w173" name="province"><option>-请选择-</option></select> 
+                            <select class="city w173" name="city"><option>请选择</option></select>
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td class="text-center">
+                          <input type="hidden" name="formtype" id="formtype" value="myinfo"/>
+                          <button type="submit" name="submit" id="submit" class="btn btn-o ml20 w400">保存修改</button>
+                          </td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+      <script src="/public/home/pc/js/jquery.cityselect.js"></script>
+      <script type="text/javascript">
+
+        $(function() {
+
+          <?php if(!empty($province)):?>
+          $("#prov_city").citySelect({prov:"<?php echo $province;?>", city:"<?php echo $city;?>"});
+          <?php else:?>
+          $("#prov_city").citySelect({
+              nodata: "none",
+              required: false
+          });
+          <?php endif;?>
+
+          $("#pic_btn").click(function () {
+            $("#upload").click(); //隐藏了input:file样式后，点击头像就可以本地上传
+            $("#upload").on("change",function(){
+              var objUrl = getObjectURL(this.files[0]) ; //获取图片的路径，该路径不是图片在本地的路径
+              if (objUrl) {
+                $("#pic").attr("src", objUrl) ; //将图片路径存入src中，显示出图片
+              }
+            });
+          });
+        });
+         
+        //建立一個可存取到該file的url
+        function getObjectURL(file) {
+          var url = null ;
+          if (window.createObjectURL!=undefined) { // basic
+            url = window.createObjectURL(file) ;
+          } else if (window.URL!=undefined) { // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+          } else if (window.webkitURL!=undefined) { // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+          }
+          return url ;
+        }
+
+      </script>

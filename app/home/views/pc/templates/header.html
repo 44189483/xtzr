@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>新泰中融-<?php echo $nav;?></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link href="/public/home/pc/css/entireframework.css" rel="stylesheet" />
+    <link href="/public/home/pc/css/owl.carousel.css" rel="stylesheet">
+    <link href="/public/home/pc/css/owl.theme.css" rel="stylesheet">
+    <link href="/public/home/pc/css/style.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+      <script src="/public/home/pc/js/html5shiv.min.js"></script>
+      <script src="/public/home/pc/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="/public/home/pc/js/jquery.min.js"></script>
+    <script src="/public/home/pc/js/owl.carousel.min.js"></script>
+    <script src="/public/home/pc/js/layer/layer.js"></script>
+    <script src="/public/home/pc/js/jquery.validate.min.js"></script>
+    <script src="/public/home/pc/js/jquery.validate.message-zh.js"></script>
+    <script src="/public/home/pc/js/custom.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <div class="loginbar">
+        <div class="container">
+          <span class="fl f-orange">
+            <img src="/public/home/pc/images/icon_phone.png" alt="" />
+            客服热线 400-1585657
+          </span>
+          <span class="fr">
+            <?php if(empty($member->user)):?>
+              <a href="/member/login">登陆</a> | <a href="/member/register">注册</a>
+            <?php else:?>
+              <a href="/user" class="f-red">
+                <img src="/<?php if(!empty($member->avatar)): echo $member->avatar;else:?>public/home/pc/images/avatar_detalut.png<?php endif;?>" alt="" class="wh30 avatar"/>&nbsp;&nbsp;进入帐户中心
+              </a>
+            <?php endif;?>
+          </span>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="logo fl">
+            <a href="/"><img src="/public/home/pc/images/logo.jpg" alt="新泰中融" /></a>
+          </div>
+          <ul class="nav">
+            <li><a href="/" <?php if($cname=='' || $cname=='Index'):?>class="active"<?php endif;?>>首页</a></li>
+            <li><a href="/lend" <?php if($cname=='Lend'):?>class="active"<?php endif;?>>出借</a></li>
+            <li><a href="/news" <?php if($cname=='News'):?>class="active"<?php endif;?>>新闻资讯</a></li>
+            <li><a href="/company" <?php if($cname=='Company'):?>class="active"<?php endif;?>>信息披露</a></li>
+            <li><a href="/contactus" class="noborder <?php if($cname=='ContactUs' || $cname=='JoinUs'):?>active<?php endif;?>">联系我们</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div  class="clearfix"></div>
+    <div id="main" <?php if($cname=='Member'):?>class="gray-bg pb15"<?php endif;?>>

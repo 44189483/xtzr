@@ -1,0 +1,80 @@
+    <div class="centercontent">
+        
+        <div id="contentwrapper" class="contentwrapper">
+
+            <div class="contenttitle2">
+                <h3>添加业务员</h3>
+            </div><!--contenttitle-->
+            
+            <div id="validation" class="subcontent">
+
+                <form id="form1" name="form1" class="stdform" method="post" action="/admin.php/salesman/save">
+
+                    <p>
+                        <label>姓名</label>
+                        <span class="field"><input type="text" name="name" id="name" class="smallinput" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>性别</label>
+                        <span class="field">
+                            <input type="radio" name="sex" value="1" /> 男
+                            <input type="radio" name="sex" value="0" /> 女
+                        </span>
+                    </p>
+
+                    <p>
+                        <label>出生日期</label>
+                        <span class="field"><input type="text" name="birth" id="birth" class="smallinput"/></span>
+                    </p>
+                    
+                    <p>
+                        <label>身份证</label>
+                        <span class="field"><input type="text" name="number" id="number" class="smallinput" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>手机号</label>
+                        <span class="field"><input type="text" name="mobile" id="mobile" class="smallinput" required="required" /></span>
+                    </p>
+
+                    <p>
+                        <label>邮箱</label>
+                        <span class="field"><input type="text" name="email" id="email" class="smallinput" /></span>
+                    </p>
+
+                    <p>
+                        <label>所在地</label>
+                        <span class="field" id="prov_city">
+                            <select class="prov" name="province"></select> 
+                            <select class="city" name="city"><option>请选择</option></select>
+                        </span>
+                    </p>
+
+                    <p class="stdformbutton">
+                        <button class="submit radius2">提 交</button>
+                        <button type="button" class="backbutton" onclick="history.back()">返 回</button>
+                    </p>
+                </form>
+
+            </div><!--subcontent-->
+        
+        </div><!--contentwrapper-->
+        
+    </div><!-- centercontent -->
+    
+    
+</div><!--bodywrapper-->
+<script>
+    jQuery(document).ready(function(){
+        jQuery('#birth').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+        jQuery("#prov_city").citySelect({
+            nodata: "none",
+            required: false
+        });
+    });
+</script>
+</body>
+</html>
